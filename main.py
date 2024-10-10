@@ -43,7 +43,19 @@ def game_loop():
 
         # Shooting bullets (spacebar)
         if keys_pressed[pygame.K_SPACE]:
-            bullets.append(Bullet(player.rect.centerx - 2, player.rect.y, 5, 10, 7))
+            bullet_x = player.rect.centerx - 2
+            bullet_y = player.rect.y
+
+            # Create a bullet based on the player's direction
+            if player.direction == "UP":
+                bullets.append(Bullet(bullet_x, bullet_y, 5, 10, 7, "UP"))
+            elif player.direction == "DOWN":
+                bullets.append(Bullet(bullet_x, bullet_y + player.rect.height, 5, 10, 7, "DOWN"))
+            elif player.direction == "LEFT":
+                bullets.append(Bullet(bullet_x - 5, bullet_y + (player.rect.height // 2) - 2.5, 10, 5, 7, "LEFT"))  # Adjust for vertical centering
+            elif player.direction == "RIGHT":
+                bullets.append(Bullet(bullet_x + player.rect.width, bullet_y + (player.rect.height // 2) - 2.5, 10, 5, 7, "RIGHT"))  # Adjust for vertical centering
+
 
         # Update bullets
         for bullet in bullets[:]:
