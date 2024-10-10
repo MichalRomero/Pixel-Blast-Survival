@@ -54,17 +54,18 @@ Sound and Effects:
 
 
 Additional Stories:
-    Boss Fights:
-        As a player, I want to face challenging boss enemies at the end of each level, so I feel a sense of accomplishment when I defeat them.
 
-        Acceptance Criteria: The game should introduce boss enemies with unique mechanics and higher difficulty at specific levels.
-    
-    Different Weapons:
-        As a player, I want to collect or unlock different types of weapons, such as shotguns or lasers, so I can adapt my playstyle and tackle enemies in different ways.
+Boss Fights:
+    As a player, I want to face challenging boss enemies at the end of each level, so I feel a sense of accomplishment when I defeat them.
 
-        Acceptance Criteria: The player should have access to multiple weapon types that alter the gameplay (e.g., spread shots, rapid fire, explosive projectiles).
+    Acceptance Criteria: The game should introduce boss enemies with unique mechanics and higher difficulty at specific levels.
     
-    Multiplayer Mode:
-        As a player, I want to team up with friends and play co-op, so we can tackle enemies together and compete for the highest score.
-        
-        Acceptance Criteria: The game should allow two players to control characters simultaneously, with both players having individual health and score tracking.
+Different Weapons:
+    As a player, I want to collect or unlock different types of weapons, such as shotguns or lasers, so I can adapt my playstyle and tackle enemies in different ways.
+
+    Acceptance Criteria: The player should have access to multiple weapon types that alter the gameplay (e.g., spread shots, rapid fire, explosive projectiles).
+    
+Multiplayer Mode:
+    As a player, I want to team up with friends and play co-op, so we can tackle enemies together and compete for the highest score.
+
+    Acceptance Criteria: The game should allow two players to control characters simultaneously, with both players having individual health and score tracking.
