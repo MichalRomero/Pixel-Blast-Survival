@@ -1,6 +1,8 @@
 import pygame
 import sys
 from player import Player
+from bullet import Bullet
+from enemy import Enemy
 
 pygame.init()
 
@@ -16,8 +18,11 @@ clock = pygame.time.Clock()
 
 
 # Initialize player
-player = Player(SCREEN_WIDTH // 2 - 25, SCREEN_HEIGHT - 60, 50, 50, 5)
+player = Player(SCREEN_WIDTH // 2 - 25, SCREEN_HEIGHT // 2 - 25, 50, 50, 5)
 
+# Initialize bullets and enemies
+bullets = []
+enemies = []
 
 
 # Main game loop
@@ -30,23 +35,35 @@ def game_loop():
                 running = False
 
 
-
-        
-
         keys_pressed = pygame.key.get_pressed()
 
         # Player movement
         player.handle_movement(keys_pressed, SCREEN_WIDTH, SCREEN_HEIGHT)
 
-        
+
+        # Shooting bullets (spacebar)
+        if keys_pressed[pygame.K_SPACE]:
+            bullets.append(Bullet(player.rect.centerx - 2, player.rect.y, 5, 10, 7))
+
+        # Update bullets
+        for bullet in bullets[:]:
+            bullet.update()
+            if bullet.rect.y < 0:
+                bullets.remove(bullet)
 
 
 
         # Fill the screen with a background color
         screen.fill((0, 0, 0))  # Black background
 
+
         # Draw player
         player.draw(screen)
+
+        # Draw bullets
+        for bullet in bullets:
+            bullet.draw(screen)
+
 
         # Update display
         pygame.display.flip()
