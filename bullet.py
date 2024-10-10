@@ -18,5 +18,15 @@ class Bullet:
         elif self.direction == "RIGHT":
             self.rect.x += self.speed
 
-    def draw(self, screen):
-        pygame.draw.rect(screen, self.color, self.rect)
+    def draw(self, screen, camera_rect):
+        # Draw the bullet with camera offset
+        pygame.draw.rect(screen, self.color, self.rect.move(-camera_rect.x, -camera_rect.y))
+
+    def is_off_screen(self, screen_width, screen_height):
+        # Check if the bullet is off the screen with a threshold of 100 pixels
+        return (
+            self.rect.x < -1000 or 
+            self.rect.x > screen_width + 1000 or 
+            self.rect.y < -1000 or 
+            self.rect.y > screen_height + 1000
+        )
