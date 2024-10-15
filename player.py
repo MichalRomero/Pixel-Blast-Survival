@@ -3,7 +3,7 @@ from sprite import Sprite
 from input import is_key_pressed
 from camera import camera
 
-movement_speed = 2
+movement_speed = 3
 
 class Player(Sprite):
     def __init__(self, image, x, y):

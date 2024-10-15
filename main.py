@@ -8,8 +8,8 @@ from camera import create_screen
 # Set up 
 pygame.init()
 
-pygame.display.set_caption("Adventure Game")
-screen = create_screen(800, 600, "Adventure Game")
+pygame.display.set_caption("Pixel Blast: Survival")
+screen = create_screen(800, 600, "Pixel Blast: Survival")
 
 clear_color = (30, 150, 50)
 running = True
@@ -20,7 +20,7 @@ tile_kinds = [
     TileKind("water", "images/water.png", False),
     TileKind("wood", "images/wood.png", False)
 ]
-player = Player("images/player.png", 32*11, 32*7)
+player = Player("images/player.png", 32*11, 32)
 map = Map("maps/start.map", tile_kinds, 32)
 
 Sprite("images/tree.png", 0 * 32, 0 * 32)
