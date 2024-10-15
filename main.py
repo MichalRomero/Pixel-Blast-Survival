@@ -17,7 +17,7 @@ screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("Pixel Blast: Survival")
 
 # Create a player instance
-player = Player(100, 100, 50, 50, 5)
+player = Player("images/player.png", 100, 100, 50, 50, 5)
 
 # Create a list to store bullets
 bullets = []

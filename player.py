@@ -1,10 +1,12 @@
 import pygame
+from sprite import Sprite
 
-class Player:
-    def __init__(self, x, y, width, height, speed):
+class Player(Sprite):
+    def __init__(self, image, x, y, width, height, speed):
+        super().__init__(image, x, y, width, height, speed)
+        
+        # Define the player's rectangle (position and size)
         self.rect = pygame.Rect(x, y, width, height)
-        self.color = (0, 255, 0)
-        self.speed = speed
         self.direction = "UP"  # Default facing direction
 
     def handle_movement(self, keys_pressed, map_width, map_height):
@@ -28,7 +30,7 @@ class Player:
     
     def draw(self, screen, camera_rect):
         # Draw the player offset by the camera position
-        pygame.draw.rect(screen, self.color, self.rect.move(-camera_rect.x, -camera_rect.y))
+        screen.blit(self.image, self.rect.move(-camera_rect.x, -camera_rect.y))
 
     def get_position(self):
         return self.rect.topleft
