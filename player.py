@@ -1,36 +1,22 @@
 import pygame
 from sprite import Sprite
+from input import is_key_pressed
+from camera import camera
+
+movement_speed = 2
 
 class Player(Sprite):
-    def __init__(self, image, x, y, width, height, speed):
-        super().__init__(image, x, y, width, height, speed)
-        
-        # Define the player's rectangle (position and size)
-        self.rect = pygame.Rect(x, y, width, height)
-        self.direction = "UP"  # Default facing direction
+    def __init__(self, image, x, y):
+        super().__init__(image, x, y)
 
-    def handle_movement(self, keys_pressed, map_width, map_height):
-        # Move the player based on key presses
-        if keys_pressed[pygame.K_a]:
-            self.rect.x -= self.speed
-            self.direction = "LEFT"
-        if keys_pressed[pygame.K_d]:
-            self.rect.x += self.speed
-            self.direction = "RIGHT"
-        if keys_pressed[pygame.K_w]:
-            self.rect.y -= self.speed
-            self.direction = "UP"
-        if keys_pressed[pygame.K_s]:
-            self.rect.y += self.speed
-            self.direction = "DOWN"
-
-        # Keep player inside the larger movement boundaries
-        self.rect.x = max(0, min(map_width - self.rect.width, self.rect.x))
-        self.rect.y = max(0, min(map_height - self.rect.height, self.rect.y))
-    
-    def draw(self, screen, camera_rect):
-        # Draw the player offset by the camera position
-        screen.blit(self.image, self.rect.move(-camera_rect.x, -camera_rect.y))
-
-    def get_position(self):
-        return self.rect.topleft
+    def update(self):
+        if is_key_pressed(pygame.K_w):
+            self.y -= movement_speed
+        if is_key_pressed(pygame.K_s):
+            self.y += movement_speed
+        if is_key_pressed(pygame.K_a):
+            self.x -= movement_speed
+        if is_key_pressed(pygame.K_d):
+            self.x += movement_speed
+        camera.x = self.x - camera.width/2 + self.image.get_width()/2
+        camera.y = self.y - camera.height/2 + self.image.get_height()/2

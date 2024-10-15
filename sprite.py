@@ -1,10 +1,11 @@
 import pygame
+from camera import camera
 
 sprites = []
 loaded = {}
 
 class Sprite:
-    def __init__(self, image, x, y, width, height, speed):
+    def __init__(self, image, x, y):
         if image in loaded:
             self.image = loaded[image]
         else:
@@ -12,13 +13,12 @@ class Sprite:
             loaded[image] = self.image
         self.x = x
         self.y = y
-        self.width = width
-        self.height = height
-        self.speed = speed
         sprites.append(self)
 
     def delete(self):
         sprites.remove(self)
 
     def draw(self, screen):
-        screen.blit(self.image, (self.x, self.y))
+        screen.blit(self.image, (self.x - camera.x, self.y - camera.y))
+
+# Load things uniquely.
