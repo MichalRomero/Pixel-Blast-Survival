@@ -1,9 +1,8 @@
-
+active_objs = []
 
 class Entity:
     def __init__(self, *components, x=0, y=0):
         self.components = []
-
         for c in components:
             self.add(c)
         self.x = x
@@ -13,7 +12,7 @@ class Entity:
         self.components.append(component)
         component.entity = self
 
-    def add(self, kind):
+    def remove(self, kind):
         c = self.get(kind)
         if c is not None:
             c.entity = None

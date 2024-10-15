@@ -4,6 +4,7 @@ from player import Player
 from input import keys_down
 from map import Map, TileKind
 from camera import create_screen
+from entity import Entity, active_objs
 
 # Set up 
 pygame.init()
@@ -20,23 +21,27 @@ tile_kinds = [
     TileKind("water", "images/water.png", False),
     TileKind("wood", "images/wood.png", False)
 ]
-player = Player("images/player.png", 32*11, 32)
+
+player = Entity(Player(), Sprite("images/player.png"), x=32*11, y=32*7)
 map = Map("maps/start.map", tile_kinds, 32)
 
-Sprite("images/tree.png", 0 * 32, 0 * 32)
-Sprite("images/tree.png", 7 * 32, 2 * 32)
-Sprite("images/tree.png", 1 * 32, 10* 32)
-Sprite("images/tree.png", 12* 32, -1* 32)
-Sprite("images/tree.png", 14* 32, 9 * 32)
-Sprite("images/tree.png", 12* 32, -1* 32)
-Sprite("images/tree.png", 13* 32, 12* 32)
-Sprite("images/tree.png", 20* 32, 9 * 32)
-Sprite("images/tree.png", 22* 32, -1* 32)
-Sprite("images/tree.png", 24* 32, 12* 32)
-Sprite("images/tree.png", 2 * 32, 8 * 32)
-Sprite("images/tree.png", 15* 32, 15* 32)
-Sprite("images/tree.png", 17 * 32,1 * 32)
-Sprite("images/tree.png", 1 * 32, 15 * 32)
+def make_tree(x, y):
+    Entity(Sprite("images/tree.png"), x=x, y=y)
+
+make_tree(0 * 32, 0 * 32)
+make_tree(7 * 32, 2 * 32)
+make_tree(1 * 32, 10* 32)
+make_tree(12* 32, -1* 32)
+make_tree(14* 32, 9 * 32)
+make_tree(12* 32, -1* 32)
+make_tree(13* 32, 12* 32)
+make_tree(20* 32, 9 * 32)
+make_tree(22* 32, -1* 32)
+make_tree(24* 32, 12* 32)
+make_tree(2 * 32, 8 * 32)
+make_tree(15* 32, 15* 32)
+make_tree(17 * 32,1 * 32)
+make_tree(1 * 32, 15 * 32)
 
 
 # Game Loop
@@ -50,7 +55,8 @@ while running:
             keys_down.remove(event.key)
 
     # Update Code
-    player.update()
+    for a in active_objs:
+        a.update()
 
     # Draw Code
     screen.fill(clear_color)
